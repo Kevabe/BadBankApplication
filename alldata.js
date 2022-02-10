@@ -6,6 +6,4 @@ function AllData(){
     {JSON.stringify(ctx)}<br/>
     </>
   );
-  console.log(ctx);
-  console.log(ctx.name);
 }
