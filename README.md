@@ -5,4 +5,6 @@ Description: Banking application featuring a navigation bar allowing the user to
 
 This was an assignment for my MITxPro Full Stack Development with MERN Certification Course
 
+Visit this website to see it in action: http://kevinsmithbankingapp.s3-website-us-west-1.amazonaws.com/#/alldata/
+
 ![image](https://user-images.githubusercontent.com/89057457/153344228-5b9c65c9-96e8-4721-ab0b-70c842a4913b.png)
