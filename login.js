@@ -1,68 +1,95 @@
 function Login(){
   const [show, setShow]     = React.useState(true);
-  const [status, setStatus] = React.useState('');    
-
+  const [status, setStatus] = React.useState('');  
+ 
   return (
-    <Card
+
+    <Card 
       bgcolor="secondary"
       header="Login"
       status={status}
-      body={show ? 
-        <LoginForm setShow={setShow} setStatus={setStatus}/> :
-        <LoginMsg setShow={setShow} setStatus={setStatus}/>}
-    />
+      body={show ? (
+        
+        <LoginForm setShow={setShow} setStatus={setStatus}/> ): (
+        <LoginMsg setShow={setShow} setStatus={setStatus}/> )
+      }
+    />  
   ) 
 }
 
 function LoginMsg(props){
+      const ctx = React.useContext(UserContext);
+      const [username, SetUsername] = React.useState('');
+      
   return(<>
-    <h5>Success</h5>
-    <button type="submit" 
+    <h5>welcome!</h5>
+    <button type="submit"
+      id="logout" 
       className="btn btn-light" 
-      onClick={() => props.setShow(true)}>
-        Authenticate again
+      onClick={() => {props.setShow (true), logout();}}>
+        Log out
     </button>
   </>);
+
+  function logout(){
+    let nothing = ctx.users[0].email = '';
+     SetUsername(nothing);
+     ctx.users[0].email = nothing;
+     console.log(ctx.users[0].email);
+     props.setStatus('');
+    };
 }
 
 function LoginForm(props){
   const [email, setEmail]       = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [username, SetUsername] = React.useState('');
+  const ctx = React.useContext(UserContext);
 
-  function handle(){
+
+ function handle(){
     fetch(`/account/login/${email}/${password}`)
     .then(response => response.text())
     .then(text => {
         try {
             const data = JSON.parse(text);
-            props.setStatus('');
+            props.setStatus('account: ' + data.name);
             props.setShow(false);
             console.log('JSON:', data);
         } catch(err) {
-            props.setStatus(text)
-            console.log('err:', text);
+            props.setStatus('error account not found')
+            console.log('error:', text);
         }
     });
-  }
+
+  };
+ function display(){
+  let total= ctx.users[0].email = email;
+  SetUsername(total);
+  ctx.users[0].email = total;
+  console.log(ctx.users[0].email);
+ };
 
 
   return (<>
 
     Email<br/>
     <input type="input" 
+      id="email"
       className="form-control" 
-      placeholder="Enter Email" 
+      placeholder="Enter email" 
       value={email} 
       onChange={e => setEmail(e.currentTarget.value)}/><br/>
 
     Password<br/>
     <input type="password" 
+      id="password"
       className="form-control" 
-      placeholder="Enter Password" 
+      placeholder="Enter password" 
       value={password} 
       onChange={e => setPassword(e.currentTarget.value)}/><br/>
 
-    <button type="Submit" className="btn btn-light" onClick={handle}>Login</button>
-   
+    <button id="login" type="submit" className="btn btn-light" onClick={() => {display(), handle();}}>Login</button>
   </>);
+  
 }
