@@ -1,2 +1,0 @@
-# BadBank3
-BadBankAssignment
