@@ -4,7 +4,7 @@ function Home(){
     <Card
       txtcolor="Black"
       header="Bad Bank"
-      title="Banking Application, Give me all your money"
+      title="Banking Application, We take all your money!"
       text="Welcome to Bad Bank "
       body={(<img src="bank.png" className="img-fluid" alt="Responsive image" />)}
       
